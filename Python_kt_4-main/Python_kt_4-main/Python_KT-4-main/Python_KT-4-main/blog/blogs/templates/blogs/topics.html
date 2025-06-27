@@ -1,0 +1,83 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="topics-container gothic-theme">
+    <h2 class="topics-title gothic-title">🌒 Свод Тем</h2>
+    <ul class="topics-list">
+        {% for topic in topics %}
+        <li class="topic-item gothic-item">
+            <a href="{% url 'blogs:topic' topic.id %}" class="topic-link gothic-link">📖 {{ topic }}</a>
+        </li>
+        {% empty %}
+        <li class="no-topics gothic-empty">☁️ Ни единой темы в мраке...</li>
+        {% endfor %}
+    </ul>
+    <div class="add-topic-link">
+        <a href="{% url 'blogs:new_topic' %}" class="btn-add-topic gothic-button">➕ Призвать Новую Тему</a>
+    </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+.gothic-theme {
+    background-color: #1e1612;
+    color: #e2d3c1;
+    font-family: 'UnifrakturCook', cursive;
+    padding: 2rem;
+    border: 2px solid #574236;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 2rem auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.gothic-title {
+    font-size: 2.4rem;
+    color: #f7e6d5;
+    text-shadow: 2px 2px 5px #3e2e24;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.gothic-item {
+    margin-bottom: 1rem;
+}
+
+.gothic-link {
+    color: #dbc1a9;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.gothic-link:hover {
+    color: #f0d5b1;
+    text-shadow: 0 0 3px #c4a789;
+}
+
+.gothic-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #3a2b20;
+    color: #f1e1c2;
+    border: 1px solid #5a4432;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+}
+
+.gothic-button:hover {
+    background-color: #4f392c;
+    text-shadow: 0 0 5px #e8caa0;
+}
+
+.gothic-empty {
+    font-style: italic;
+    color: #9f8c7a;
+    text-align: center;
+    margin-top: 2rem;
+}
+</style>
+{% endblock content %}

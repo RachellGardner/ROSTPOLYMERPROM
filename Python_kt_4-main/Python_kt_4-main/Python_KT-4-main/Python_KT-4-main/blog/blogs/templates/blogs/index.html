@@ -1,0 +1,59 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="index-container gothic-theme">
+    <h2 class="index-title gothic-title">📜 Да снизойдёт вдохновение!</h2>
+    <p class="index-text gothic-text">
+        Сей хроникон служит хранением дум, замыслов и искр озарения.
+    </p>
+    <a href="{% url 'blogs:topics' %}" class="btn-start gothic-button">🖋️ Приступить к летописи</a>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+    .gothic-theme {
+        background: #1b1b1b;
+        color: #e5d8b0;
+        font-family: 'UnifrakturCook', cursive, serif;
+        padding: 2rem;
+        border: 2px solid #5c4433;
+        border-radius: 15px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        max-width: 800px;
+        margin: 3rem auto;
+    }
+
+    .gothic-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #f6eac2;
+        text-shadow: 0 0 8px #7a5c3b;
+    }
+
+    .gothic-text {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #d8c7a0;
+    }
+
+    .gothic-button {
+        background-color: #4e352e;
+        color: #f1e4c6;
+        border: 1px solid #886644;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-family: 'UnifrakturCook', cursive;
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+    .gothic-button:hover {
+        background-color: #6b3e3b;
+        text-shadow: 0 0 6px #fff2c2;
+    }
+</style>
+{% endblock content %}

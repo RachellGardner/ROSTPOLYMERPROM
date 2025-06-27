@@ -1,0 +1,101 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+<div class="topic-container gothic-theme">
+    <h2 class="topic-title gothic-title">📚 Свиток Темы: {{ topic }}</h2>
+
+    <div class="new-entry-link">
+        <a href="{% url 'blogs:new_entry' topic.id %}" class="btn-add-entry gothic-button">➕ Начертать Новую Запись</a>
+    </div>
+
+    <ul class="entries-list">
+        {% for entry in entries %}
+        <li class="entry-item gothic-entry">
+            <p class="entry-date gothic-date">{{ entry.date_added|date:"M d, Y H:i" }}</p>
+            <p class="entry-text gothic-text">{{ entry.text|linebreaks }}</p>
+            <p><a href="{% url 'blogs:edit_entry' entry.id %}" class="entry-edit-link gothic-edit-link">✏️ Переписать Запись</a></p>
+        </li>
+        {% empty %}
+        <li class="no-entries gothic-empty">☁️ Ни единой строки в этом свитке...</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+  .gothic-theme {
+    background-color: #1a1410;
+    color: #ede0d4;
+    font-family: 'UnifrakturCook', cursive;
+    padding: 2rem;
+    border: 2px solid #5d4735;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 2rem auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+  }
+
+  .gothic-title {
+    font-size: 2.2rem;
+    color: #f8f1e4;
+    text-shadow: 1px 1px 6px #674f3b;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .gothic-button {
+    background-color: #4b3729;
+    color: #f4e3c8;
+    font-family: 'UnifrakturCook', cursive;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #6c5441;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+  }
+
+  .gothic-button:hover {
+    background-color: #5d4230;
+    text-shadow: 0 0 5px #f0d7b8;
+  }
+
+  .gothic-entry {
+    background-color: #2a201b;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid #85664b;
+    border-radius: 6px;
+  }
+
+  .gothic-date {
+    font-size: 0.9rem;
+    color: #c6b49c;
+    margin-bottom: 0.3rem;
+  }
+
+  .gothic-text {
+    font-size: 1rem;
+    color: #f5ebdc;
+    margin-bottom: 0.5rem;
+  }
+
+  .gothic-edit-link {
+    font-size: 0.95rem;
+    color: #c9ad92;
+    text-decoration: underline dashed;
+  }
+
+  .gothic-edit-link:hover {
+    color: #e5c9a4;
+  }
+
+  .gothic-empty {
+    font-style: italic;
+    color: #a79784;
+    text-align: center;
+    padding-top: 2rem;
+  }
+</style>
+{% endblock content %}

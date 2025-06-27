@@ -1,0 +1,69 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="edit-entry-container gothic-theme">
+    <p><a href="{% url 'blogs:topic' topic.id %}" class="topic-link gothic-link">📜 {{ topic }}</a></p>
+    <h2 class="edit-title gothic-title">✒️ Редактировать хронику</h2>
+
+    <form action="{% url 'blogs:edit_entry' entry.id %}" method="post" class="edit-form gothic-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-save gothic-button">🕯️ Сохранить свиток</button>
+    </form>
+</div>
+
+<style>
+    .gothic-theme {
+        background: rgba(20, 20, 20, 0.9);
+        color: #e0d4b7;
+        font-family: 'UnifrakturCook', cursive, serif;
+        border: 2px solid #4a2c2a;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+    .gothic-link {
+        color: #c0a060;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .gothic-link:hover {
+        color: #f4e2b0;
+        text-shadow: 0 0 5px #fff4c4;
+    }
+
+    .gothic-title {
+        font-size: 2rem;
+        color: #f1e4c6;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #886644;
+        padding-bottom: 0.5rem;
+    }
+
+    .gothic-form input[type="text"],
+    .gothic-form textarea {
+        background-color: #1c1a17;
+        color: #e0d4b7;
+        border: 1px solid #665544;
+        border-radius: 8px;
+        font-family: 'UnifrakturCook', cursive;
+    }
+
+    .gothic-button {
+        background-color: #4a2c2a;
+        color: #f1e4c6;
+        border: 1px solid #886644;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-family: 'UnifrakturCook', cursive;
+        padding: 0.7rem 1.2rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .gothic-button:hover {
+        background-color: #6b3e3b;
+    }
+</style>
+{% endblock content %}

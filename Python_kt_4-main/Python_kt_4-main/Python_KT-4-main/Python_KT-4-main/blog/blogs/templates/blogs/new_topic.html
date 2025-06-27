@@ -1,0 +1,71 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="new-topic-container gothic-theme">
+  <h2 class="new-topic-title gothic-title">🌒 Воздвигнуть Новую Тему</h2>
+
+  <form action="{% url 'blogs:new_topic' %}" method="post" class="topic-form gothic-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn-submit gothic-button">➕ Возжечь Тему</button>
+  </form>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+  .gothic-theme {
+    background-color: #1d1815;
+    color: #e8dbc7;
+    font-family: 'UnifrakturCook', cursive, serif;
+    padding: 2rem;
+    margin: 3rem auto;
+    border: 2px solid #5e4530;
+    border-radius: 12px;
+    max-width: 700px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .gothic-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #f0e6cc;
+    text-shadow: 1px 1px 5px #85674b;
+  }
+
+  .gothic-form label {
+    font-size: 1rem;
+    color: #d9c4a1;
+  }
+
+  .gothic-form input,
+  .gothic-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #6a4d35;
+    background-color: #2b2622;
+    color: #f4efe7;
+    border-radius: 6px;
+    font-family: serif;
+  }
+
+  .gothic-button {
+    background-color: #4c392d;
+    color: #f5dfc5;
+    border: 1px solid #775a3f;
+    padding: 0.7rem 1.5rem;
+    font-family: 'UnifrakturCook', cursive;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .gothic-button:hover {
+    background-color: #674d3a;
+    text-shadow: 0 0 6px #f4e2be;
+  }
+</style>
+{% endblock content %}

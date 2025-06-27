@@ -1,0 +1,84 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="new-entry-container gothic-theme">
+    <p><a href="{% url 'blogs:topic' topic.id %}" class="topic-link gothic-link">📘 {{ topic }}</a></p>
+    <h2 class="new-entry-title gothic-title">✍️ Возложить Новую Запись</h2>
+
+    <form action="{% url 'blogs:new_entry' topic.id %}" method="post" class="entry-form gothic-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-add gothic-button">➕ Записать</button>
+    </form>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+    .gothic-theme {
+        background-color: #1e1a17;
+        color: #e9decf;
+        font-family: 'UnifrakturCook', cursive, serif;
+        padding: 2rem;
+        margin: 3rem auto;
+        border: 2px solid #5f4b32;
+        border-radius: 12px;
+        max-width: 800px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .gothic-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+        color: #f7eacb;
+        text-align: center;
+        text-shadow: 1px 1px 4px #8b6d45;
+    }
+
+    .gothic-link {
+        color: #ccb38a;
+        font-size: 1.1rem;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 1.2rem;
+    }
+
+    .gothic-link:hover {
+        text-shadow: 0 0 6px #d4b894;
+    }
+
+    .gothic-form label {
+        font-size: 1rem;
+        color: #e0d1b1;
+    }
+
+    .gothic-form input,
+    .gothic-form textarea {
+        width: 100%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 1px solid #7a5e3b;
+        background-color: #2d2723;
+        color: #f5f1e6;
+        border-radius: 6px;
+        font-family: serif;
+    }
+
+    .gothic-button {
+        background-color: #4f3a2e;
+        color: #f5e7d0;
+        border: 1px solid #826446;
+        padding: 0.7rem 1.5rem;
+        font-family: 'UnifrakturCook', cursive;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .gothic-button:hover {
+        background-color: #6d4b3c;
+        text-shadow: 0 0 6px #f5e3be;
+    }
+</style>
+{% endblock content %}

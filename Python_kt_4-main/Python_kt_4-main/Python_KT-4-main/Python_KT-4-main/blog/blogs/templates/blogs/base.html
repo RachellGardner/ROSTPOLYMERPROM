@@ -1,0 +1,205 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gothic</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    <!-- Готические шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=UnifrakturCook:wght@700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #1a1a1a, #3a0d0d, #4d3c3c);
+            color: #e6e6e6;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .overlay {
+            background-color: rgba(30, 30, 30, 0.85);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar-custom {
+            background-color: rgba(20, 20, 20, 0.95);
+            border-bottom: 3px solid #a52a2a;
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-text {
+            color: #dcdcdc !important;
+            font-family: 'UnifrakturCook', cursive;
+        }
+
+        .btn-outline-primary {
+            border-color: #a52a2a;
+            color: #e6e6e6;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #a52a2a;
+            color: #fff;
+        }
+
+        .navbar-toggler i {
+            font-size: 1.5rem;
+            color: #dcdcdc;
+        }
+
+        .edit-entry-container,
+        .new-entry-container,
+        .new-topic-container,
+        .topic-container,
+        .topics-container,
+        .index-container {
+            background: rgba(40, 40, 40, 0.9);
+            color: #f0e6e6;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        h1,
+        h2,
+        h3,
+        .edit-title,
+        .new-entry-title,
+        .new-topic-title,
+        .topic-title,
+        .index-title,
+        .topics-title {
+            font-family: 'UnifrakturCook', cursive;
+            color: #ffb6c1;
+        }
+
+        a.topic-link,
+        .entry-edit-link,
+        .btn-add-entry,
+        .btn-add-topic {
+            color: #dda0dd;
+        }
+
+        a.topic-link:hover,
+        .entry-edit-link:hover,
+        .btn-add-entry:hover,
+        .btn-add-topic:hover {
+            color: #ff69b4;
+        }
+
+        .entry-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: #f0e6e6;
+        }
+
+        input[type="text"],
+        textarea {
+            background-color: #1a1a1a;
+            color: #e6e6e6;
+            border: 1px solid #444;
+        }
+
+        .btn-save,
+        .btn-add,
+        .btn-submit {
+            background-color: #800000;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-save:hover,
+        .btn-add:hover,
+        .btn-submit:hover {
+            background-color: #a52a2a;
+        }
+
+        .no-entries,
+        .no-topics {
+            font-style: italic;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+
+            .topic-title,
+            .new-topic-title,
+            .topics-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark gothic-navbar">
+        <a class="navbar-brand gothic-brand" href="{% url 'blogs:index' %}">🕯️ 𝕾𝖊𝖆 𝕭𝖑𝖔𝖌 </a>
+        <button class="navbar-toggler gothic-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-cross gothic-icon"></i> <!-- Готический иконный триггер -->
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link gothic-link" href="{% url 'blogs:topics' %}">📖 𝕿𝖔𝖕𝖎𝖈𝖘 </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="navbar-text gothic-user">⚜️ 𝕲𝖗𝖊𝖊𝖙𝖎𝖓𝖌𝖘, {{ user.username }} </span>
+                </li>
+                <li class="nav-item">
+                    <form method="post" action="{% url 'users:logout' %}" class="form-inline ml-2">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light btn-sm gothic-btn" type="submit">🚪 𝕷𝖔𝖌 𝕺𝖚𝖙</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link gothic-link" href="{% url 'users:register' %}">✒️ 𝕽𝖊𝖌𝖎𝖘𝖙𝖊𝖗 </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link gothic-link" href="{% url 'users:login' %}">🔐 𝕷𝖔𝖌 𝕴𝖓 </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+
+    <main role="main" class="container">
+        <div class="overlay">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+
+</html>
